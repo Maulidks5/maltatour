@@ -6,12 +6,13 @@ assets must therefore be built locally and committed in `public/build`.
 ## Server layout
 
 - Laravel application: `/home/maltatourtravel/malta-app`
-- Public document root: `/home/maltatourtravel/malta-app/public`
+- Fixed primary-domain document root: `/home/maltatourtravel/public_html`
 
-Keep `.env`, `vendor`, `app`, `storage` and the rest of Laravel outside a public
-document root. If cPanel cannot change the primary domain document root, use a
-symlink from `/home/maltatourtravel/public_html` to the application's `public`
-directory after backing up the existing empty directory.
+Keep `.env`, `vendor`, `app`, `storage` and the rest of Laravel outside the
+public document root. `deploy-cpanel.sh` places only the safe front controller in
+`public_html` and links the public build, brand, images and uploaded media. It
+preserves cPanel's `.well-known`, `cgi-bin`, `php.ini`, `.user.ini` and existing
+PHP handler rules.
 
 ## Local release
 
